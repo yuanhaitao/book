@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book3</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+ <body id="store">
+	 
+	 <div id="banner">
+		 
+		<%= @page_title||"悦心书籍频道" %>
+	</div>
+
+</table>
+	<div id="columns">
+		<div id="side">
+			<a href=<%= store_url %>>首页</a><br/>
+             <a href="http://ruby.act.buaa.edu.cn/ruby/">参考资料</a><br />
+			 
+			 
+			<% if session[:user_id] %>
+			<br />
+			<a><%= User.find(session[:user_id]).name %></a><br/>
+			<%if User.find(session[:user_id]).name=='yhaitao' %>
+			 <%= link_to '管理员页面', admin_path %><BR/>
+			  <%end%>
+			<%= link_to '修改信息', edit_user_path(User.find(session[:user_id])) %><br />
+			<br />
+			<%= button_to '退出', logout_path, :method => :delete %>
+			<% else %>
+			<br />
+			<%= button_to '我要登录',login_path %>
+			<br/>
+			<br/>
+			<%= link_to '还没注册',new_user_path  %>
+
+
+			<% end %>
+  
+
+		</div>
+		<div id="main"> 
+<%= yield %>
+        </div>
+    </div>
+
+<div id="footer">
+Copyright yhaitao &copy; 2014
+</div>
+
+</body> 
+
+
+</html>
+

@@ -1,0 +1,51 @@
+
+<p>
+  <b>书名:</b>
+ <b> <%= @book.title %></b>
+</p>
+
+<p>
+  <b>作者:</b>
+  <%= @book.author %>
+</p>
+
+<p>
+  <b>价格:</b>
+  <%= @book.price %>
+</p>
+
+<p>
+  <b>图书出版社:</b>
+  <%= @book.book_press %>
+</p>
+
+<p>
+  <b>图书简介:</b>
+  <%= @book.description %>
+</p>
+
+<p>
+  <b>图书封面:</b>
+ <%= image_tag(@book.image_url) %> 
+</p>
+
+<p>
+  <b>出版日期:</b>
+  <%= @book.date %>
+</p>
+
+
+
+
+<h2>相关评价:</h2>
+<div id="comments">
+<%= render :partial => @book.comments %>
+</div>
+<%= form_for [@book, Comment.new] do |f| %>
+  <p>
+    <%= f.label :content, "新的评论" %> <br />
+    <%= f.text_area :content, :rows => 5 %>
+  </p>
+  <p><%= f.submit "添加评论" %></p>
+<% end %>
+<%= link_to 'Back', store_path %>

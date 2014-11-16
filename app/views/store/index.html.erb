@@ -1,0 +1,26 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h1>悦心图书标签<%puts session[:user_id] %>what</h1>
+
+<% @books.each do |book| %>
+<div class= "entry">
+    <%= image_tag(book.image_url) %>
+   <table>
+   	<tr>
+  <td>  <h3><%=link_to book.title,book %></h3></td>
+  <td>  <h3><%=book.book_press %></h3> </td>
+
+</tr>
+<tr>
+	 <td background-color="green">   <%= sanitize(book.description) %></td>
+    <td><%= book.date %></td>
+</tr>
+</table>
+    <div class="price_line">
+    <span class="price"><%= sprintf("￥%0.02f" , book.price) %></span>
+    
+
+    </div>
+</div>
+<% end %>

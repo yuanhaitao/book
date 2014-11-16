@@ -1,0 +1,39 @@
+<h1>Editing user</h1>
+
+<div class="book3_form" >
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+  <legend>用户修改信息</legend>
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :size=>40,  :placeholder =>"用户名不能超过40个字符，可以是中文"%>
+  </div>
+  <div>
+    <%= f.label  :password, 'Password' %><br />
+    <%= f.password_field :password, :size =>40, :placeholder =>"密码不少于6位不超过40位"  %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, 'Confirm' %><br />
+    <%= f.password_field :password_confirmation, :size =>40, :placeholder =>"再次确认密码"%>
+  </div>
+  
+  <div>
+    <%= f.submit '确认修改' %>
+  </div>
+  </fieldset>
+<% end %>
+</div>
+
+
+ 
